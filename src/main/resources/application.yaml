@@ -1,4 +1,28 @@
+outbox:
+  topic:
+    default: default.v1.topic
+    reply: reply.v1.topic
+  message:
+    limit: 500
+    clean-days: 30
+  scheduler:
+    sender:
+      enabled: true
+      delay: 10000
+    cleaner:
+      enabled: true
+      cron: "1 * * * * *"
+
 spring:
-  application:
-    name:
-      outbox-spring-boot-starter
+  datasource:
+    url: jdbc:postgresql://localhost:5432/admin
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      schema: test
+  flyway:
+    enabled: true
+    default-schema: test
+  kafka:
+    bootstrap-servers: "localhost:29092"
